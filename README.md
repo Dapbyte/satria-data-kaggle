@@ -26,7 +26,7 @@ Klasifikasi emosi dari teks percakapan ke 7 kelas:
 | 3 | EDA — distribusi emosi, word cloud, panjang teks |
 | 4 | Text Preprocessing, Conversational Context & TF-IDF |
 | 5 | Classical ML — Hyperparameter Tuning (LogReg, LinearSVC) |
-| 6 | Deep Learning — DeBERTa-v3-small (Transformers + AMP) |
+| 6 | Deep Learning — DeBERTa-v3-base (Transformers + AMP) |
 | 7 | Model Comparison & Results |
 | 8 | Inference Demo |
 
@@ -35,7 +35,7 @@ Klasifikasi emosi dari teks percakapan ke 7 kelas:
 1. Buka [Kaggle Notebooks](https://www.kaggle.com/code)
 2. Upload `satria-data-try.ipynb`
 3. Add Input → cari **"Multimodal EmotionLines Dataset(MELD)"** by zaber666
-4. Add Input → cari **"deberta-v3-small-starter-cv-0-820-lb-0-800"** by cdeotte
+4. Add Input → cari **"deberta-v3-base-starter-cv-0-820-lb-0-800"** by cdeotte
 5. Enable **GPU** accelerator (P100 / T4 x2)
 6. Run All
 
@@ -55,7 +55,7 @@ Klasifikasi emosi dari teks percakapan ke 7 kelas:
 - **Multinomial Naive Bayes** (Pipeline TF-IDF)
 - **Random Forest** (Pipeline TF-IDF + class_weight)
 - **Gradient Boosting** (Pipeline TF-IDF)
-- **DeBERTa-v3-small** (Hugging Face Transformers + PyTorch AMP)
+- **DeBERTa-v3-base** (Hugging Face Transformers + PyTorch AMP)
 
 ## 📄 License
 
