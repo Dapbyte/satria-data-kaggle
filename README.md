@@ -24,9 +24,9 @@ Klasifikasi emosi dari teks percakapan ke 7 kelas:
 | 1 | Setup Environment & Config |
 | 2 | Data Loading (optimized `usecols` + dtype downcast) |
 | 3 | EDA — distribusi emosi, word cloud, panjang teks |
-| 4 | Text Preprocessing & TF-IDF Feature Engineering |
-| 5 | Classical ML — LogReg, LinearSVC, NB, RF, GBT |
-| 6 | Deep Learning — BiLSTM with Attention |
+| 4 | Text Preprocessing, Conversational Context & TF-IDF |
+| 5 | Classical ML — Hyperparameter Tuning (LogReg, LinearSVC) |
+| 6 | Deep Learning — DeBERTa-v3-small (Transformers + AMP) |
 | 7 | Model Comparison & Results |
 | 8 | Inference Demo |
 
@@ -35,26 +35,27 @@ Klasifikasi emosi dari teks percakapan ke 7 kelas:
 1. Buka [Kaggle Notebooks](https://www.kaggle.com/code)
 2. Upload `satria-data-try.ipynb`
 3. Add Input → cari **"Multimodal EmotionLines Dataset(MELD)"** by zaber666
-4. Enable **GPU** accelerator
-5. Run All
+4. Add Input → cari **"deberta-v3-small-starter-cv-0-820-lb-0-800"** by cdeotte
+5. Enable **GPU** accelerator (P100 / T4 x2)
+6. Run All
 
 ## ⚡ Optimasi
 
-- Tidak ada `pip install` — semua library sudah ada di Kaggle
-- Direct CSV path (bukan `os.walk` scan 11GB)
-- `usecols` — hanya load kolom teks/emosi
-- Dtype downcast — hemat ~30-50% RAM
-- Matplotlib/Seaborn saja (tanpa Plotly ~200MB)
-- Class weights untuk handle imbalanced data
+- **Conversational Context**: Menggabungkan histori kalimat dengan token `[SEP]`.
+- **Offline Models**: DeBERTa dimuat dari local dataset tanpa butuh koneksi internet.
+- **Mixed Precision (AMP)**: PyTorch `autocast` melatih model Deep Learning 2x lebih cepat dengan memori 50% lebih efisien.
+- **Hyperparameter Tuning**: Otomatis mencari parameter ML terbaik dengan `RandomizedSearchCV` + TF-IDF Pipeline.
+- **Efficient Loading**: `usecols` dan Dtype downcast menghemat ~30-50% RAM.
+- **Class Weights**: Handling data imbalanced secara otomatis di Loss Function.
 
 ## 📊 Models
 
-- **Logistic Regression** (TF-IDF + class_weight)
-- **LinearSVC** (TF-IDF + class_weight)
-- **Multinomial Naive Bayes** (TF-IDF)
-- **Random Forest** (TF-IDF + class_weight)
-- **Gradient Boosting** (TF-IDF)
-- **BiLSTM + Attention** (PyTorch, GPU)
+- **Logistic Regression (Tuned)** (Pipeline TF-IDF + class_weight)
+- **LinearSVC (Tuned)** (Pipeline TF-IDF + class_weight)
+- **Multinomial Naive Bayes** (Pipeline TF-IDF)
+- **Random Forest** (Pipeline TF-IDF + class_weight)
+- **Gradient Boosting** (Pipeline TF-IDF)
+- **DeBERTa-v3-small** (Hugging Face Transformers + PyTorch AMP)
 
 ## 📄 License
 
